@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+
+\usepackage{graphicx}
+
+\usepackage{hyperref}
+
+\usepackage[utf8]{inputenc}
+
+
+\title{Credit Card Fraud Detection}
+
+\author{Wen Sun}
+
+\date{03/02/2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+The project is to recognize fraudulent credit card transactions so that customers are not charged for items that they did not 
+purchase. This project contains two parts: 
+
+    \begin{itemize}
+    \item Predict if a transaction is fraudulent or not
+    \item Use data streaming techniques to see how many fraudulent transactions happen in the last k seconds
+    \end{itemize}
+
+\section{Dataset}
+    This dataset contains transactions made by credit cards in September 2013 by European cardholders.\\
+    This dataset presents transactions that occurred in two days, where we have 492 frauds out of 284,807 transactions.\\ 
+    This dataset is very unbalanced, since the positive class (frauds) count for 0.17\% of all transactions.\\
+    It contains only numerical input (V1,V2,...,V28) based on a PCA transformation. Due to confidentially issues, we do not know
+    the meaning of these features. "Time" and "Amount" variables are not transformed by the PCA. "Time" contains the seconds elapsed
+    between transaction and the first transaction in the dataset. And the 'Amount' is the transaction amount. The target variable is "Class", and
+    it takes value 1 as fraud and 0 otherwise. 
+\section{Data processing}
+    Because the 'Amount' features are not transformed while others do. I scaled the "Amount" variable by applying 
+\section{Data Prediction}
+\subsection{Original results}
+
+\subsection{Imbalanced dataset}
+As I mentioned above, this dataset is very imbalanced, as the positive class (frauds) only count for 0.17\% of all transactions. In other words, the ratio between the fraud and non-fraud is 1: 500.\\
+So, our prediction will have a bias to predict the class as non-fraud because it is the majority class. 
+
+\end{document}
