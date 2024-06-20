@@ -1,4 +1,3 @@
-import random
 from collections import deque
 class DGIM:
     def __init__(self, window_size):
@@ -7,8 +6,10 @@ class DGIM:
 
         
     def update(self, bit):
+        '''When the new bit comes in
+        '''
 
-
+        # If the next incoming bit is 1
         if bit == 1:
             self.buckets.append({'size': 1, 'timestamp': 0})
             self.merge_buckets()
@@ -18,9 +19,11 @@ class DGIM:
                 bucket['timestamp'] += 1
         self.drop_buckets()
 
-        
 
     def merge_buckets(self):
+        '''If the current bit is 1, and there are now three buckets with the same size. Merge the 
+        oldest buckets into doubled size. 
+        '''
         i = 0
         while i < len(self.buckets) - 2:
             if self.buckets[i]['size'] == self.buckets[i + 2]['size']:
@@ -30,7 +33,6 @@ class DGIM:
             else:
                 i += 1
 
-
     def drop_buckets(self):
         ''' drop buckets when their end-time > window size time units in the past
         '''
@@ -38,6 +40,9 @@ class DGIM:
             del self.buckets[0]
     
     def estimate_count(self):
+        '''Estimate the total number of 1's in the last k elements,
+        which is equal to sum of all bucket sizes + (last bucket size)/2
+        '''
         total_count = 0
         for bucket in self.buckets:
             total_count += bucket['size']
